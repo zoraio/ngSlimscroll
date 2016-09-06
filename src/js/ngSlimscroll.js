@@ -286,6 +286,7 @@
         function getBaseBar(scope) {
             var bar,
                 positionCss,
+                barId = '',
                 commonCssProperty = {
                     'background': scope.color,
                     'position': 'absolute',
@@ -295,6 +296,10 @@
                     'z-index': scope.zIndex,
                     'cursor': 'pointer'
                 };
+
+            if(scope.setBarId) {
+              barId = 'id="bar"';
+            }
 
             if (scope.horizontalScroll) {
                 bar = angular.element('<div ng-mousedown="makeBarDraggableHorizontal($event)"></div>');
@@ -306,7 +311,7 @@
                     ? {bottom: scope.distance}
                     : {top: scope.distance};
             } else {
-                bar = angular.element('<div id="bar" ng-mousedown="makeBarDraggable($event)"></div>');
+                bar = angular.element('<div '+barId+'  ng-mousedown="makeBarDraggable($event)"></div>');
                 commonCssProperty = angular.extend(commonCssProperty, {
                     'width': scope.size,
                     'top': '0'
@@ -350,6 +355,7 @@
             scope.touchScrollStep = attrs['touchScrollStep'] || 200;
             scope.watchContent = scope.$eval(attrs['watchContent']) || false;
             scope.zIndex = attrs['zIndex'] || '99';
+            scope.setBarId = attrs['setBarId'] || false;
         }
     }
 })();
