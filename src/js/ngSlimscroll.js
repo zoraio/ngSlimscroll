@@ -279,7 +279,7 @@
                 scope.attachWheel(el);
                 return true;
             }
-            
+
             init();
         }
 
@@ -295,7 +295,7 @@
                     'z-index': scope.zIndex,
                     'cursor': 'pointer'
                 };
- 
+
             if (scope.horizontalScroll) {
                 bar = angular.element('<div ng-mousedown="makeBarDraggableHorizontal($event)"></div>');
                 commonCssProperty = angular.extend(commonCssProperty, {
@@ -306,7 +306,7 @@
                     ? {bottom: scope.distance}
                     : {top: scope.distance};
             } else {
-                bar = angular.element('<div ng-mousedown="makeBarDraggable($event)""></div>');
+                bar = angular.element('<div id="bar" ng-mousedown="makeBarDraggable($event)"></div>');
                 commonCssProperty = angular.extend(commonCssProperty, {
                     'width': scope.size,
                     'top': '0'
